@@ -5,8 +5,10 @@ http_interactions:
     uri: http://echo.httpkit.com/
     body:
       encoding: UTF-8
-      string: fizz=buzz&foo=bar
-    headers: {}
+      string: foo=blah
+    headers:
+      Yan:
+      - isawesome
   response:
     status:
       code: 200
@@ -15,11 +17,11 @@ http_interactions:
       Server:
       - nginx/1.1.19
       Date:
-      - Mon, 03 Nov 2014 23:16:15 GMT
+      - Mon, 03 Nov 2014 23:16:16 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '407'
+      - '421'
       Connection:
       - keep-alive
       X-Powered-By:
@@ -40,10 +42,11 @@ http_interactions:
           "headers": {
             "x-forwarded-for": "50.254.144.14",
             "host": "echo.httpkit.com",
-            "content-length": "17",
+            "yan": "isawesome",
+            "content-length": "8",
             "content-type": "application/x-www-form-urlencoded"
           },
-          "body": "fizz=buzz&foo=bar",
+          "body": "foo=blah",
           "ip": "127.0.0.1",
           "powered-by": "http://httpkit.com",
           "docs": "http://httpkit.com/echo"
