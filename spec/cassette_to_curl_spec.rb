@@ -1,6 +1,7 @@
 require 'vcr'
 require 'httparty'
 require 'webmock'
+require 'pry'
 require 'VcrToCurl'
 
 VCR.configure do |c|
@@ -19,7 +20,7 @@ describe VcrToCurl::CassetteToCurl do
 
     it "converts the interaction to curl command" do
       curl_command = vcr_to_curl.curl_commands[0]
-      expect(curl_command).to eq('curl -X POST -d "fizz=buzz" http://requestb.in/1cn93ai1')
+      expect(curl_command).to eq("curl -X POST -d 'fizz=buzz&foo=bar' http://requestb.in/1cn93ai1")
     end
   end
 

@@ -5,15 +5,37 @@ module VcrToCurl
     end
 
     def curl_commands
-      @curl_commands = []
-      http_interactions.each do |http_interaction|
-        curl_command = ''
-        @curl_commands << curl_command
+      http_interactions.map do |http_interaction|
+        convert_request_to_curl(http_interaction["request"])
       end
+    end
+
+    def convert_request_to_curl(request)
+      curl_command = "curl -X #{request_type(request)} "
+      curl_command += "-d '#{request_data(request)}' " if has_data?(request)
+      curl_command += request_url(request)
+      curl_command
     end
 
     def http_interactions
       @loaded_cassette['http_interactions']
     end
+
+    private
+      def has_data?(request)
+        request.has_key?("body") && request["body"].has_key?("string")
+      end
+
+      def request_type(request)
+        request["method"].upcase
+      end
+
+      def request_url(request)
+        request["uri"]
+      end
+
+      def request_data(request)
+        request["body"]["string"]
+      end
   end
 end
