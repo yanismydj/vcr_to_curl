@@ -1,5 +1,6 @@
 require 'vcr'
 require 'httparty'
+require 'webmock'
 require 'VcrToCurl'
 
 VCR.configure do |c|
@@ -17,7 +18,7 @@ describe VcrToCurl::CassetteToCurl do
     it 'creates a new cassette' do
       VCR.use_cassette('sample vcr cassette') do
         uri = 'http://requestb.in/1cn93ai1'
-        response = HTTParty.post(uri, query: { 'fizz' => 'buzz', 'foo' => 'bar' })
+        response = HTTParty.post(uri, body: { 'fizz' => 'buzz', 'foo' => 'bar' })
       end
     end
   end
