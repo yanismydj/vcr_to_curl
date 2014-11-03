@@ -14,13 +14,21 @@ describe VcrToCurl::CassetteToCurl do
   let(:vcr_to_curl) { VcrToCurl::CassetteToCurl.new(cassette) }
 
   describe '#curl_commands' do
-    it 'has the correct_number of commands based on the interactions' do
-      expect(vcr_to_curl.curl_commands.length).to eq(1)
+    describe 'request with body and no headers' do
+      it 'has the correct_number of commands based on the interactions' do
+        expect(vcr_to_curl.curl_commands.length).to eq(1)
+      end
+
+      it "converts the interaction to curl command" do
+        curl_command = vcr_to_curl.curl_commands[0]
+        expect(curl_command).to eq("curl -X POST -d 'fizz=buzz&foo=bar' http://requestb.in/1cn93ai1")
+      end
     end
 
-    it "converts the interaction to curl command" do
-      curl_command = vcr_to_curl.curl_commands[0]
-      expect(curl_command).to eq("curl -X POST -d 'fizz=buzz&foo=bar' http://requestb.in/1cn93ai1")
+    describe 'request with headers and no body' do
+      it 'creates the correct curl command' do
+
+      end
     end
   end
 
@@ -39,7 +47,7 @@ describe VcrToCurl::CassetteToCurl do
     end
 
     it 'creates a cassette with headers' do
-      VCR.use_cassette('sample cassette with headers') do
+      VCR.use_cassette('sample vcr cassette') do
         uri = 'http://requestb.in/1cn93ai1'
         reesponse = HTTParty.post(uri, headers: { 'yan' => 'is awesome' })
       end
