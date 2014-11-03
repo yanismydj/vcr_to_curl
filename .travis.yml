@@ -1,7 +1,4 @@
 language: ruby
-bundler_args: --without extras
-services:
-  - redis-server
 rvm:
   - 1.8.7
   - 1.9.2
