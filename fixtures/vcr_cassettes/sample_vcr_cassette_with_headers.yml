@@ -8,7 +8,7 @@ http_interactions:
       string: ''
     headers:
       Yan:
-      - is awesome
+      - isawesome
   response:
     status:
       code: 200
@@ -17,11 +17,11 @@ http_interactions:
       Server:
       - nginx/1.1.19
       Date:
-      - Mon, 03 Nov 2014 23:16:16 GMT
+      - Mon, 03 Nov 2014 23:33:26 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '416'
+      - '415'
       Connection:
       - keep-alive
       X-Powered-By:
@@ -42,7 +42,7 @@ http_interactions:
           "headers": {
             "x-forwarded-for": "50.254.144.14",
             "host": "echo.httpkit.com",
-            "yan": "is awesome",
+            "yan": "isawesome",
             "content-length": "0",
             "content-type": "application/x-www-form-urlencoded"
           },
@@ -52,5 +52,5 @@ http_interactions:
           "docs": "http://httpkit.com/echo"
         }
     http_version: 
-  recorded_at: Mon, 03 Nov 2014 22:32:58 GMT
+  recorded_at: Mon, 03 Nov 2014 22:50:08 GMT
 recorded_with: VCR 2.9.3
