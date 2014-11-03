@@ -1,6 +1,7 @@
 # VcrToCurl
+[![Build Status](https://travis-ci.org/yanismydj/vcr_to_curl.svg?branch=master)](https://travis-ci.org/yanismydj/vcr_to_curl)
 
-TODO: Write a gem description
+Use this gem to convert vcr cassettes into curl commands.  Great for replaying requests in your tests
 
 ## Installation
 
@@ -18,7 +19,8 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+`cassette_to_curl = VcrToCurl::CassetteToCurl.new('your_cassette_here.yml')`
+`cassette_to_curl.curl_commands` => an array of curl commands for interactions in this cassette
 
 ## Contributing
 
