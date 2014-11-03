@@ -30,11 +30,18 @@ describe VcrToCurl::CassetteToCurl do
     end
   end
 
-  describe 'create sample cassette' do
+  describe 'create sample cassettes' do
     it 'creates a new cassette' do
       VCR.use_cassette('sample vcr cassette') do
         uri = 'http://requestb.in/1cn93ai1'
         response = HTTParty.post(uri, body: { 'fizz' => 'buzz', 'foo' => 'bar' })
+      end
+    end
+
+    it 'creates a cassette with headers' do
+      VCR.use_cassette('sample cassette with headers') do
+        uri = 'http://requestb.in/1cn93ai1'
+        reesponse = HTTParty.post(uri, headers: { 'yan' => 'is awesome' })
       end
     end
   end
