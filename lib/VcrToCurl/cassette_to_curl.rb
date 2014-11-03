@@ -12,7 +12,8 @@ module VcrToCurl
 
     def convert_request_to_curl(request)
       curl_command = "curl -X #{request_type(request)} "
-      curl_command += "-d '#{request_data(request)}' " if has_data?(request)
+      curl_command += request_data(request) if has_data?(request)
+      curl_command += request_headers(request) if has_headers?(request)
       curl_command += request_url(request)
       curl_command
     end
@@ -26,6 +27,10 @@ module VcrToCurl
         request["body"]["string"].length > 0
       end
 
+      def has_headers?(request)
+        request["headers"].keys.size > 0
+      end
+
       def request_type(request)
         request["method"].upcase
       end
@@ -35,7 +40,15 @@ module VcrToCurl
       end
 
       def request_data(request)
-        request["body"]["string"]
+        "-d '#{request["body"]["string"]}' "
+      end
+
+      def request_headers(request)
+        header_string = ''
+        request["headers"].each do |key, value|
+          header_string += "-H '#{key.capitalize}: #{value[0]}' "
+        end
+        header_string
       end
   end
 end

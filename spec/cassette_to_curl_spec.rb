@@ -37,7 +37,7 @@ describe VcrToCurl::CassetteToCurl do
 
       it 'creates the correct curl command' do
         curl_command = vcr_to_curl.curl_commands[0]
-        expect(curl_command).to eq("curl -X POST -H yan=isawesome http://echo.httpkit.com/")
+        expect(curl_command).to eq("curl -X POST -H 'Yan: isawesome' http://echo.httpkit.com/")
       end
     end
 
@@ -47,7 +47,7 @@ describe VcrToCurl::CassetteToCurl do
 
       it 'creates the correct curl command' do
        curl_command = vcr_to_curl.curl_commands[0]
-       expect(curl_command).to eq("curl -X POST -d 'foo=blah' -H yan=isawesome http://echo.httpkit.com/")
+       expect(curl_command).to eq("curl -X POST -d 'foo=blah' -H 'Yan: isawesome' http://echo.httpkit.com/")
       end
     end
   end
@@ -63,14 +63,14 @@ describe VcrToCurl::CassetteToCurl do
     it 'creates a cassette with headers' do
       VCR.use_cassette('sample vcr cassette with headers') do
         uri = 'http://echo.httpkit.com'
-        response = HTTParty.post(uri, headers: { 'yan' => 'is awesome' })
+        response = HTTParty.post(uri, headers: { 'Yan' => 'isawesome' })
       end
     end
 
     it 'creates a cassette with headers and post data' do
       VCR.use_cassette('sample vcr cassette with headers and post data') do
         uri = 'http://echo.httpkit.com'
-        response = HTTParty.post(uri, headers: { 'yan' => 'isawesome' }, body: { foo: "blah"})
+        response = HTTParty.post(uri, headers: { 'Yan' => 'isawesome' }, body: { foo: "blah"})
       end
     end
   end
