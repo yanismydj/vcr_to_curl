@@ -23,6 +23,12 @@ describe VcrToCurl::CassetteToCurl do
         curl_command = vcr_to_curl.curl_commands[0]
         expect(curl_command).to eq("curl -X POST -d 'fizz=buzz&foo=bar' http://echo.httpkit.com/")
       end
+
+      describe '#http_interactions' do
+        it 'has the correct number of interactions' do
+          expect(vcr_to_curl.http_interactions.length).to eq(1)
+        end
+      end
     end
 
     describe 'request with headers and no body' do
@@ -43,12 +49,6 @@ describe VcrToCurl::CassetteToCurl do
        curl_command = vcr_to_curl.curl_commands[0]
        expect(curl_command).to eq("curl -X POST -d 'foo=blah' -H yan=isawesome http://echo.httpkit.com/")
       end
-    end
-  end
-
-  describe '#http_interactions' do
-    it 'has the correct number of interactions' do
-      expect(vcr_to_curl.http_interactions.length).to eq(1)
     end
   end
 
