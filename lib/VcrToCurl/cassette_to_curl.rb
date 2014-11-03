@@ -23,7 +23,7 @@ module VcrToCurl
 
     private
       def has_data?(request)
-        request.has_key?("body") && request["body"].has_key?("string")
+        request["body"]["string"].length > 0
       end
 
       def request_type(request)
