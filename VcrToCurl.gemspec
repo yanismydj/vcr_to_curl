@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary       = %q{Turn VCR cassettes into curl commands}
   spec.description   = %q{This gem allows you to take a vcr
     cassette and turn it into a curl command}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/yanismydj/vcr_to_curl"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
