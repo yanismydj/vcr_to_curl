@@ -19,6 +19,13 @@ Or install it yourself as:
 
 ## Usage
 
+### Command Line Utility
+```
+$ convert_cassette path/to/vcr_cassette_here.yml
+curl -X POST -d 'fizz=buzz&foo=bar' http://echo.httpkit.com/
+```
+
+### In your codez
 `cassette_to_curl = VcrToCurl::CassetteToCurl.new('your_cassette_here.yml')`
 `cassette_to_curl.curl_commands` => an array of curl commands for interactions in this cassette
 
