@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'VcrToCurl'
+
+cassette = ARGV[0]
+vcr_to_curl = VcrToCurl::CassetteToCurl.new(cassette)
+vcr_to_curl.curl_commands.each do |curl_command|
+  puts curl_command
+end
