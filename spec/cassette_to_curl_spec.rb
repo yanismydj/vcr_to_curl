@@ -21,7 +21,7 @@ describe VcrToCurl::CassetteToCurl do
 
       it "converts the interaction to curl command" do
         curl_command = vcr_to_curl.curl_commands[0]
-        expect(curl_command).to eq("curl -X POST -d 'fizz=buzz&foo=bar' http://echo.httpkit.com/")
+        expect(curl_command).to eq("curl -X POST -d 'fizz=buzz&foo=bar' 'http://echo.httpkit.com/'")
       end
 
       describe '#http_interactions' do
@@ -37,7 +37,7 @@ describe VcrToCurl::CassetteToCurl do
 
       it 'creates the correct curl command' do
         curl_command = vcr_to_curl.curl_commands[0]
-        expect(curl_command).to eq("curl -X POST -H 'Yan: isawesome' http://echo.httpkit.com/")
+        expect(curl_command).to eq("curl -X POST -H 'Yan: isawesome' 'http://echo.httpkit.com/'")
       end
     end
 
@@ -47,7 +47,7 @@ describe VcrToCurl::CassetteToCurl do
 
       it 'creates the correct curl command' do
        curl_command = vcr_to_curl.curl_commands[0]
-       expect(curl_command).to eq("curl -X POST -d 'foo=blah' -H 'Yan: isawesome' http://echo.httpkit.com/")
+       expect(curl_command).to eq("curl -X POST -d 'foo=blah' -H 'Yan: isawesome' 'http://echo.httpkit.com/'")
       end
     end
   end
