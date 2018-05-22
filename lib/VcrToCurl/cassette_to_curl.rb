@@ -38,7 +38,7 @@ module VcrToCurl
       end
 
       def request_url(request)
-        request["uri"]
+        ['', request["uri"], ''].join("'")
       end
 
       def request_data(request)
